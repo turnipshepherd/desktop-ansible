@@ -1,5 +1,31 @@
 # Desktop Ansible
 
+I found this repo from [this post](https://old.reddit.com/r/archlinux/comments/rox2f5/i_created_an_ansible_role_to_wipe_a_drive_and/)
+and discovered it matched my current bash scripted install almost exactly. Current goals with the project is to make it more general
+and finish some of the objects on the original author's todo list. 
+
+# TODO: 
+- remove a lot of the original authors hard coded information, such as
+  - passwords
+  - ip addresses
+  - locale
+  - etc if i find more
+- use reflector instead of rankmirror
+- abstract grub to do efi and mbr for virtual machine install
+- does the original make sure pacman-init has finished?
+- does the original do a secure disk wipe?
+- automatic snapshotting (adapt from existing bash script)
+  - https://wiki.archlinux.org/title/Snapper
+- enable grub-btrfs for snapshot boot (adapt from existing bash script)
+  - https://archlinux.org/packages/?name=grub-btrfs
+
+- disable QoW for QEMU images
+  - https://wiki.archlinux.org/title/btrfs#Disabling_CoW => specifically on a certain directory
+- enable scrubbing
+  - https://wiki.archlinux.org/title/btrfs#Scrub
+
+# Original Readme
+
 Ansible playbook to install my personal computer from scratch (including the partitioning and bootloader config. (uses full disk)
 Initial install heavily based of: https://github.com/jsf9k/ansible-arch-install
 
@@ -58,12 +84,3 @@ Run before ansible:
 - pacman -S openssh
 - systemctl start sshd
 
-# TODO: 
-- disable QoW for QEMU images
-  - https://wiki.archlinux.org/title/btrfs#Disabling_CoW => specifically on a certain directory
-- enable scrubbing
-  - https://wiki.archlinux.org/title/btrfs#Scrub
-- automatic snapshotting
-  - https://wiki.archlinux.org/title/Snapper
-- enable grub-btrfs for snapshot boot
-  - https://archlinux.org/packages/?name=grub-btrfs
